@@ -6,7 +6,7 @@ public class Aluno extends Usuario {
 	//private boolean ativo;
 	private int quantEmprestimos;
 	
-	public Aluno (String ID, String name) {
+	public Aluno (int ID, String name) {
 		super (ID, name);
 		this.quantEmprestimos = 0;
 	}

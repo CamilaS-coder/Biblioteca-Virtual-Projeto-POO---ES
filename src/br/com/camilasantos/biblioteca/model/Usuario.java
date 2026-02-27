@@ -1,17 +1,17 @@
 package br.com.camilasantos.biblioteca.model;
 
 public abstract class Usuario {
-	private String ID;
+	private int ID;
 	private String name;
 	private boolean ativo;
 	
-	public Usuario (String ID, String name) {
+	public Usuario (int ID, String name) {
 		this.ID = ID;
 		this.name = name;
 		this.ativo = false;
 	}
 	
-	public String getID() {
+	public int getID() {
 		return this.ID;
 	}
 	
