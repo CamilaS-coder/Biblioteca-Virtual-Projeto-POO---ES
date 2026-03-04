@@ -17,5 +17,8 @@ public class Emprestimo {
 		return this.usuario;
 	}
 	
+	public String toString() {
+		return getUsuario().toString() +  getLivro().toString() + "\n";
+	}
 	
 }

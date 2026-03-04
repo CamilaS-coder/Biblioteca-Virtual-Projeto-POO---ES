@@ -4,11 +4,27 @@ public abstract class Usuario {
 	private int ID;
 	private String name;
 	private boolean ativo;
+	private int quantEmprestimos;
 	
 	public Usuario (int ID, String name) {
 		this.ID = ID;
 		this.name = name;
 		this.ativo = false;
+		quantEmprestimos = 0;
+	}
+	
+	public int getQuantEmprestimos() {
+		return this.quantEmprestimos;
+	}
+	
+	public void adicEmprestimo() {
+		this.quantEmprestimos++;
+		return;
+	}
+	
+	public void remoEmprestimo() {
+		this.quantEmprestimos--;
+		return;
 	}
 	
 	public int getID() {
@@ -35,6 +51,6 @@ public abstract class Usuario {
 	}
 	
 	public String toString() {
-		return this.ID + " " + this.name;
+		return "[ " + "Código de Segurança: " + this.ID + " ] " + "[ " + "Nome do Usuário: " + this.name + " ] " + "[ " +  "Nº de emprestimos: " + getQuantEmprestimos() + " ]" +  "\n";
 	}
 }

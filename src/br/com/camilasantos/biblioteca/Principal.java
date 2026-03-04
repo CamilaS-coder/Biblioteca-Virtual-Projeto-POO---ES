@@ -18,7 +18,7 @@ public class Principal {
             System.out.println("2 - Cadastrar livro");
             System.out.println("3 - Realizar empréstimo");
             System.out.println("4 - Realizar devolução");
-            System.out.println("5 - Mostrar sustema da biblioteca");
+            System.out.println("5 - Mostrar sistema da biblioteca");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 

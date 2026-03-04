@@ -12,15 +12,16 @@ public  class Biblioteca implements BibliotecaService{
 	private ArrayList <Livro> livros;
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Emprestimo> emprestimos;
-	private int contador;
+	private int contadorlivros;
+	private int contadorusuarios;
 	private int i;
-	private boolean encontrado = false;
 	
 	public Biblioteca() {
 		this.livros = new ArrayList<Livro>();
 		this.usuarios = new ArrayList<Usuario>();
 		this.emprestimos = new ArrayList<Emprestimo>();
-		this.contador = 0;
+		this.contadorlivros = 0;
+		this.contadorusuarios = 0;
 	}
 	
 	private Livro buscarLivro(int id) {
@@ -45,21 +46,21 @@ public  class Biblioteca implements BibliotecaService{
 	@Override
 	 public void cadastrarLivro(String titulo, String autor) {
 
-        Livro novoLivro = new Livro(titulo, autor, contador);
+        Livro novoLivro = new Livro(titulo, autor, contadorlivros);
 
         livros.add(novoLivro);
 
-        contador++;
+        contadorlivros++;
     }
 	
 	@Override
 	public void cadastrarAluno(String name) {
 		
-		Aluno novoAluno = new Aluno(contador, name);
+		Aluno novoAluno = new Aluno(contadorusuarios, name);
 		
 		usuarios.add(novoAluno);
 		
-		contador++;
+		contadorusuarios++;
 	}
 	
 	@Override
@@ -77,11 +78,16 @@ public  class Biblioteca implements BibliotecaService{
 			throw new ErrorException("fail: usuario não está cadastrado");
 		}
 		
+		if(livro.getStatus() == Status.EMPRESTADO) {
+			throw new ErrorException("fail: livro não está disponível");
+		}
+		
 		livro.emprestar();
 		
 		Emprestimo novoemprestimo = new Emprestimo(usuario, livro);
 		
 		emprestimos.add(novoemprestimo);
+		//usuario.
 		return emprestimos;
 		
 		
@@ -92,23 +98,27 @@ public  class Biblioteca implements BibliotecaService{
 		
 		Usuario usuario = buscarUsuario(idUsuario);
 		
-		ArrayList<Livro> livrosativos = new ArrayList<Livro>();
+		
+		ArrayList<Livro> livrosAtivos = new ArrayList<>();
 		
 		for(Emprestimo emprestimo : emprestimos) {
 			if(usuario == null) {
 				throw new ErrorException("fail: usuario não está cadastrado");
 			}
 			
+			
 			if(emprestimo.getUsuario() == usuario && emprestimo.getLivro().getStatus() == Status.EMPRESTADO){
-				livrosativos.add(emprestimo.getLivro());
+				livrosAtivos.add(emprestimo.getLivro());
 				
 			}
  		}
-		return livrosativos;
+		return livrosAtivos;
 	}
 	
 	@Override
 	public void realizarDevolucao(int idUsuario, int idLivro) throws ErrorException{
+		
+		boolean encontrado = false;
 		
 		Usuario usuario = buscarUsuario(idUsuario);
 		
