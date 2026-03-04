@@ -13,7 +13,7 @@ public abstract class Biblioteca implements BibliotecaService{
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Emprestimo> emprestimos;
 	private int contador;
-	private int i;
+	//private int i;
 	
 	public Biblioteca() {
 		this.livros = new ArrayList<Livro>();
@@ -76,11 +76,18 @@ public abstract class Biblioteca implements BibliotecaService{
 		
 		livro.emprestar();
 		
-		//if(livro.getStatus() == Status.EMPRESTADO) {
-		//	throw new ErrorException("fail: livro não está disponível");
-		///}
+		Emprestimo novoemprestimo = new Emprestimo(usuario, livro);
+		
+		emprestimos.add(novoemprestimo);
+		return emprestimos;
 		
 		
 	}
+	
+	public ArrayList<Livro> listarlivrosEmprestados(int idUsuario) {
+		
+	}
+	
+	
 	
 }
