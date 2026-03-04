@@ -49,6 +49,6 @@ public class Livro {
 	//}
 	
 	public String toString() {
-		return getTitulo() + ": " + getAutor() + " - " + getStatus();
+		return getId() + " " + getTitulo() + ": " + getAutor() + " - " + getStatus();
 	}
 }

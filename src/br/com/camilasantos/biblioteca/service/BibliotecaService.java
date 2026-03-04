@@ -17,10 +17,11 @@ public interface BibliotecaService {
 	
 	//public abstract void cadastrarLivro(Funcionario funcionario, Aluno aluno);
 	public abstract void cadastrarLivro(String titulo, String autor); //cadastrar livro no acervo da biblioteca;
-	public abstract void cadastrarAluno(Aluno aluno); //cadastrar aluno nos registrod da biblioteca;
+	public abstract void cadastrarAluno(String name); //cadastrar aluno nos registrod da biblioteca;
 	public abstract ArrayList<Emprestimo> realizarEmprestimo(int idUsuario, int idLivro) throws ErrorException; //emprestar livro para funcionario ou aluno
 	public abstract ArrayList<Livro> listarlivrosEmprestados(int idUsuario) throws ErrorException;
-	public abstract ArrayList<Livro> realizarDevolucao(Livro livro);// retirar o livro da lista do aluno, mas deixar uma especie de histórico
+	public abstract void realizarDevolucao(int idUsuario, int idLivro) throws ErrorException;// retirar o livro da lista do aluno, mas deixar uma especie de histórico
+	public abstract String toString();
 	//ArrayList<Livro> cadastrarLivro(Livro livro);
 	//void cadastrarLivro(String titulo, String autor);
 }
