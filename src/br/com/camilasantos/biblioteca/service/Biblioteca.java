@@ -87,7 +87,7 @@ public  class Biblioteca implements BibliotecaService{
 		Emprestimo novoemprestimo = new Emprestimo(usuario, livro);
 		
 		emprestimos.add(novoemprestimo);
-		//usuario.
+		usuario.adicEmprestimo();
 		return emprestimos;
 		
 		
@@ -155,6 +155,7 @@ public  class Biblioteca implements BibliotecaService{
 		if(encontrado == false) {
 			throw new ErrorException("fail: Usuario não está com esse livro");
 		}
+		usuario.remoEmprestimo();
 		
 	}
 	
